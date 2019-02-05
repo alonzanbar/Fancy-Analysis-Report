@@ -1,15 +1,4 @@
 
-\section{Preprocessing}
-
-\subsection{Data}
-
-The samples are real VBC calls that were made between 1.1.2018 to 22.1.2018, and that were rated by an iOS user. Each call is represented by # feature, and has label (y) - which is the call's rate.
-
-The calls were retrieved from Kibana (Elastic search). The matched rates are taken from Localytics.
-
-\paragraph{Rates}\label{Rates}
-
-The Rated
 
 
 \section{Analysis}
@@ -17,7 +6,7 @@ The Rated
 \subsection{1. Impairments vs Rating analysis}
 
 The analysis phase's goal was to evaluate the separability of star classes based on the features collected for each sample.
-most of the work was exploratory and contained visualization of segements of the deta in different forms to highlight change in distributions as function of change in feature/s
+most of the work was exploratory and contained visualization of segments of the data in different forms to highlight change in distributions as function of change in feature/s
 
 Figures  \ref{fig:mos_vs_stars} presents the distributions of different quality measures as a function of the Rate. The box plots in those figures shows that for lower rates the there are more samples with "bad" levels of quality measures than in high rates.
 This insight suggest a relation between quality and rates that supplied the required justification to keep exploring in that direction.
@@ -72,20 +61,37 @@ rated as bad calls.
     
 \subsubsection{2. Call length}\label{call-length}
 
-Another Promising dimension is the call length. we hypothesize that quality calls will be over earlier than that similar calls that have good quality. if indeed this assumption is current and also our basic thesis about the quality and Rates correlation  
+Another Promising dimension is the call length. we make an assumption that low quality calls will be over earlier than similar calls that have good quality. this assumption is supported by \ref{fig:Impairments_Length} visualizing the phenomena that shorter calls tend to have higher impairment values.
 
-\begin{center}
-\includegraphics{figures/output_32_0.png}
-\end{center}
+Combined with our basic thesis about the quality and Rates correlation requires that  we should see shorter calls in low rates.
 
-
-\subsubsection{}
-
-
-
-\subsubsection{Subsection}
+\begin{figure}
+    \centering
+    \includegraphics[scale=0.4]{figures/impairments_length.png}
+    \caption{Impairments vs call length}
+    \label{fig:Impairments_Length}
+\end{figure}
 
 
 
 
+Indeed, \ref{fig:Rates_call_length} shows that for shorter calls, the amount of '1' rated calls (bad) is high comparing to other rates whereas, in longer calls this amount declines   
+
+\begin{figure}
+    \centering
+    \includegraphics[scale=0.6]{figures/Rates_call_length_lines.png}
+    \caption{Calls amount by rates vs Call length}
+    \label{fig:Rates_call_length}
+\end{figure}
+
+\subsection{Analysis summery}
+We have explored for a relation between calls data and their rates and found that statically there is some correlation ( level is not yet proven ) between different feature like call length and impairment on the Rate.
+finally we present the full break down of impairments features we collected against the Rates in \ref{fig:all_arrays}
+
+\begin{figure}
+    \centering
+    \includegraphics[scale=0.2]{figures/all_arrays.png}
+    \caption{Impairments vs Rates}
+    \label{fig:all_arrays}
+\end{figure}
 % %-------------------------Content------------------------

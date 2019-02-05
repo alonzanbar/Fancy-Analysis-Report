@@ -1,0 +1,22 @@
+
+\section{Preprocessing}
+
+\subsection{Data}
+
+The samples are real VBC calls that were made between 1.1.2018 to 22.1.2018, and that were rated by an iOS user. Each call is represented by # feature, and has label (y) - which is the call's rate. The calls were retrieved from Kibana (Elastic search). The matched rates are taken from Localytics.
+
+\paragraph{Calls}\label{Rates}
+Each sample is actually a call in a specific device. It means that a call between user A that is logged in in device a, to user B that is logged in in devices b1 and b2 would be represented as 3 samples: A-a, B-b1, B-b2. All of these samples would share the same \textbf{HDAP-trace-id}, which is the id for the call. For simplicity, we will refer to the samples as calls.
+
+\paragraph{Rates}\label{Rates}
+
+The user's rates are discrete values between 1 to 5, where 1 represents a bad quality call and 5 represents a good quality call. The users were asked to rate a call if the following conditions are met:
+1. The user opened the app at least 10 times.
+2. At least 15 days have passed since the last rate request.
+3. There were at least 10 successful calls. A "successful call" is a call that last at least 150 sec.
+4. The user didn't choose the "Don't show again" option.
+
+Each rate is matched to HDAP-trace-id. Therefore, we will match the given rate to all the calls that contain the same HDAP-trace-id, as we can't know which side was the one who rated. This, under the assumption that if one side felt that the call was bad, it might reflect the experience of the other sides.
+
+\subsection{Preprocessing}
+
